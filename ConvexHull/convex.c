@@ -5,7 +5,6 @@
 #include <time.h>
 
 
-//node nodes[10];
 void enumeration(node *nodes) {
 	int *mark = (int*)calloc(length,sizeof(int));
 	int i, j, k, g;
@@ -65,11 +64,7 @@ void printresult(node *nodes,int *mark) {
 int generatenodes(node *nodes)
 {
 	int i, x = 0, y = 0;
-	int mark[4];
-	mark[0] = 0;
-	mark[1] = 0;
-	mark[2] = 0;
-	mark[3] = 0;
+	int *mark = (int*)calloc(length, sizeof(int));
 	printf("length %d\n", length);
 	srand((unsigned)time(NULL)); 
 	for (i = 0; i < length; i++)
