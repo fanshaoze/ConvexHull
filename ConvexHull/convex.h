@@ -9,3 +9,4 @@ typedef struct
 
 void enumeration(node *nodes);
 int judgein(node a, node b, node c, node d);
+void printresult(node *nodes,int *mark);
