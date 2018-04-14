@@ -4,20 +4,24 @@
 #include "malloc.h"
 #include <time.h>
 
+
 //node nodes[10];
 void enumeration(node *nodes) {
-	int *mark = calloc(sizeof(nodes)/sizeof(nodes[0]),sizeof(int));
+	int *mark = (int*)calloc(length,sizeof(int));
 	int i, j, k, g;
 	int isin;
-	int length = sizeof(nodes) / sizeof(nodes[0]);
 	for (i = 0; i < length; i++) {
 		for (j = 0; j < length; j++) {
 			for (k = 0; k < length; k++) {
 				for (g = 0; g < length; g++) {
 					if (g != i &&g != j &&g != k && g != i &&
 						i != j &&j != k &&i != k &&
-						!mark[i] && !mark[j]&& !mark[k])
-					isin = judgein(nodes[i], nodes[j], nodes[k], nodes[g]);
+						!mark[i] && !mark[j] && !mark[k]) {
+						isin = judgein(nodes[i], nodes[j], nodes[k], nodes[g]);
+					}
+					else {
+						continue;
+					}
 					if (isin == 1) {
 						mark[g] = 1;
 					}
@@ -51,35 +55,45 @@ int judgein(node a, node b, node c, node d) {
 }
 void printresult(node *nodes,int *mark) {
 	int i = 0;
-	int length = sizeof(nodes) / sizeof(nodes[0]);
 	for (i = 0; i < length; i++) {
 		if (!mark[i]) {
-			printf("node (%d %d)", nodes[i].x, nodes[i].y);
+			printf("node (%d %d)\n", nodes[i].x, nodes[i].y);
 		}
 	}
 	return;
 }
 int generatenodes(node *nodes)
 {
-	int i, x,y;
-	int length = sizeof(nodes) / sizeof(nodes[0]);
-	srand((unsigned)time(NULL)); //用时间做种，每次产生随机数不一样
-	for (i = 0; i<length; i++)
+	int i, x = 0, y = 0;
+	int mark[4];
+	mark[0] = 0;
+	mark[1] = 0;
+	mark[2] = 0;
+	mark[3] = 0;
+	printf("length %d\n", length);
+	srand((unsigned)time(NULL)); 
+	for (i = 0; i < length; i++)
 	{
-		x = rand() % 101; //产生0-100的随机数
-		y = rand() % 101; //产生0-100的随机数
+		x = rand() % range + 1;
+		y = rand() % range + 1;
 		nodes[i].x = x;
 		nodes[i].y = y;
+		printf("(%d %d)\n", x, y);
 	}
+	//printresult(nodes, mark);
 	return 0;
 }
 int main() {
-	int i = 4;
-	node *nodes = NULL;
-	nodes = (node*)malloc(i * sizeof(node));
+	node* nodes = (node*)malloc(length * sizeof(node));
+	if (nodes == NULL) {
+		return 1;
+	}
+//	printf("length %d\n",sizeof(nodes));
+
 	generatenodes(nodes);
 	enumeration(nodes);
 	printf("what");
+	free(nodes);
 	return 0;
 
 }
