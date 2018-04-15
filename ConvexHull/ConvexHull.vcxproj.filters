@@ -21,6 +21,12 @@
     <ClCompile Include="sample.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="GrahamScan.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Brute.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="convex.h">
