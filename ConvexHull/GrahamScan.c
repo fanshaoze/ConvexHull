@@ -23,3 +23,12 @@ int cmp2(node nodes[], node p1, node p2) {
 	}
 	return c1>0;
 }
+
+int sort_angle(node nodes[]) {
+
+	return 0;
+}
+int sort_dis(node nodes[]) {
+
+	return 0;
+}
