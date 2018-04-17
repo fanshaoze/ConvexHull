@@ -18,6 +18,7 @@ int main() {
 
 	generatenodes(nodes);
 	enumeration(nodes);
+	graham_scan(nodes);
 	printf("what");
 	free(nodes);
 	return 0;
