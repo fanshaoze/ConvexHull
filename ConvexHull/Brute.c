@@ -32,7 +32,7 @@ void enumeration(node *nodes) {
 			}
 		}
 	}
-	//printresult(nodes, mark);
+	printresult(nodes, mark);
 }
 int side(node x, node y, node z)
 {

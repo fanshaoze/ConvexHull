@@ -19,7 +19,7 @@ int generatenodes(node *nodes)
 		nodes[i].y = y;
 		//printf("(%d %d)\n", x, y);
 	}
-	printresult(nodes, mark);
+	//printresult(nodes, mark);
 	return 0;
 }
 void printresult(node *nodes, int *mark) {
