@@ -13,10 +13,6 @@ double dis(node a, node b) {
 	return sqrt(1.0*(a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
 }
 
-int cmp1(node p1, node p2) {
-	return p1.x<p2.x || (p1.x == p2.x&&p1.y<p2.y);
-}
-
 int cmp2(node nodes[], node p1, node p2) {
 	int c1 = cross(nodes[0], p1, p2);  //tp,p1),c2=cross(p[0],tp,p2);  
 	if (c1 == 0) {
@@ -27,15 +23,18 @@ int cmp2(node nodes[], node p1, node p2) {
 
 int sort_place(node nodes[],int start) {
 	int i, j;
+	int *mark = (int*)calloc(length, sizeof(int));
 	node temp;
-	for (i = start; i < length; i++) {
-		for (j = 0; j < length - i; j++) {
-			if (!cmp1(nodes[i], nodes[j])) {
-				temp = nodes[j];
-				nodes[j] = nodes[i];
-				nodes[i] = temp;
+	for (i = start; i < length-1; i++) {
+		for (j = start; j < length -i-1; j++) {
+			if ( nodes[j].x>nodes[j+1].x || ((nodes[j].x==nodes[j+1].x)&&nodes[j].y>nodes[j+1].y)) {
+				temp = nodes[j+1];
+				nodes[j+1] = nodes[j];
+				nodes[j] = temp;
 			}
 		}
+		//printresult(nodes, mark);
+		//printf("\n");
 	}
 	return 0;
 }
@@ -44,27 +43,36 @@ int sort_angle(node nodes[], int start) {
 	node temp;
 	for (i = start; i < length; i++) {
 		for (j = 0; j < length - i; j++) {
-			if (!cmp1(nodes[i], nodes[j])) {
-				temp = nodes[j];
-				nodes[j] = nodes[i];
-				nodes[i] = temp;
+			if (!cmp2(nodes,nodes[j], nodes[j+1])) {
+				temp = nodes[j+1];
+				nodes[j+1] = nodes[j];
+				nodes[j] = temp;
 			}
 		}
 	}
 	return 0;
 }
 
-node* graham_scan(node nodes[]) {
+node* graham_scan(node *nodes) {
+	int i = 0;
+	int *mark = (int*)calloc(length, sizeof(int));
 	int top = 0;
-	node *sort_nodes = calloc(length, sizeof(node));
-	node *stack = calloc(length, sizeof(node));
-	memcpy(sort_nodes, nodes, length);
+	node *sort_nodes = (node*)calloc(length, sizeof(node));
+	node *stack = (node*)calloc(length, sizeof(node));
+	memcpy(sort_nodes, nodes, sizeof(node)*length);
+	//printresult(nodes, mark);
+	//printresult(sort_nodes, mark);
 	top = 0;
 	sort_place(sort_nodes, 0);
+	//printresult(sort_nodes, mark);
+	printf("\n");
 	sort_angle(sort_nodes, 1);
 	stack[top++] = sort_nodes[0];
+
 	stack[top++] = sort_nodes[1];
-	for (int i = 2; i<length; i++) {
+	
+	//printresult(sort_nodes,mark);
+	for (i = 2; i<length; i++) {
 		if (cross(stack[top - 2], stack[top - 1], sort_nodes[i])>0) stack[top++] = sort_nodes[i];
 		else {
 			top--;
@@ -72,6 +80,9 @@ node* graham_scan(node nodes[]) {
 			stack[top++] = sort_nodes[i];
 		}
 	}
-	stack[top++] = sort_nodes[0];
+	for (i = top; i < length; i++) {
+		mark[i] = 1;
+	}
+	//printresult(stack,mark);
 	return stack;
 }
