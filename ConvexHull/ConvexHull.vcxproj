@@ -113,6 +113,7 @@
     <ClCompile Include="Brute.c" />
     <ClCompile Include="convex.c" />
     <ClCompile Include="GrahamScan.c" />
+    <ClCompile Include="quick_sort.c" />
     <ClCompile Include="sample.c">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>

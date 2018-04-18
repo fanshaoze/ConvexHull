@@ -63,8 +63,9 @@ node* graham_scan(node *nodes) {
 	//printresult(nodes, mark);
 	//printresult(sort_nodes, mark);
 	top = 0;
-	sort_place(sort_nodes, 0);
-	//printresult(sort_nodes, mark);
+	//sort_place(sort_nodes, 0);
+	quicksort_place(sort_nodes, 0 ,length-1);
+	printresult(sort_nodes, mark);
 	printf("\n");
 	sort_angle(sort_nodes, 1);
 	stack[top++] = sort_nodes[0];
@@ -85,4 +86,49 @@ node* graham_scan(node *nodes) {
 	}
 	//printresult(stack,mark);
 	return stack;
+}
+
+void quicksort_place(node * nodes, int begin, int end)
+{
+	int i, j;
+	if (begin < end) {
+		i = begin + 1;  // 将array[begin]作为基准数，因此从array[begin+1]开始与基准数比较！  
+		j = end;        // array[end]是数组的最后一位  
+		while (i < j) {
+			if (nodes[i].x > nodes[begin].x || ((nodes[i].x == nodes[begin].x) && nodes[i].y > nodes[begin].y)) { // 如果比较的数组元素大于基准数，则交换位置。  
+				swap(&nodes[i], &nodes[j]);  // 交换两个数  
+				j--;
+			}
+			else {
+				i++;  // 将数组向后移一位，继续与基准数比较。  
+			}
+		}
+		/* 跳出while循环后，i = j。
+		* 此时数组被分割成两个部分  -->  array[begin+1] ~ array[i-1] < array[begin]
+		*                           -->  array[i+1] ~ array[end] > array[begin]
+		* 这个时候将数组array分成两个部分，再将array[i]与array[begin]进行比较，决定array[i]的位置。
+		* 最后将array[i]与array[begin]交换，进行两个分割部分的排序！以此类推，直到最后i = j不满足条件就退出！
+		*/
+		if (nodes[i].x > nodes[begin].x || ((nodes[i].x == nodes[begin].x) && nodes[i].y >= nodes[begin].y)) {  // 这里必须要取等“>=”，否则数组元素由相同的值时，会出现错误！  
+		
+			i--;
+		}
+
+		swap(&nodes[begin], &nodes[i]);  // 交换array[i]与array[begin]  
+
+		quicksort_place(nodes, begin, i);
+		quicksort_place(nodes, j, end);
+	}
+}
+void swap(node *a, node *b)
+{
+	int temp;
+	temp = a->x;
+	a->x = b->x;
+	b->x = temp;
+
+	temp = a->y;
+	a->y = b->y;
+	b->y = temp;
+	return;
 }

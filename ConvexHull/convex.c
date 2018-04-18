@@ -8,8 +8,8 @@
 
 
 int main() {
-	length = 50000;
-	range = 100;
+	length = 5;
+	range = 10;
 	times = 1;
 	
 	for (int i = 0; i < times; i++) {

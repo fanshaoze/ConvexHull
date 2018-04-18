@@ -20,6 +20,8 @@ int cmp2(node nodes[], node p1, node p2);
 int sort_place(node nodes[], int start);
 int sort_angle(node nodes[], int start);
 node* graham_scan(node *nodes);
+void quicksort_place(node * nodes, int begin, int end);
+void swap(node *a, node *b);
 
 void printresult(node *nodes, int *mark);
 int generatenodes(node *nodes);

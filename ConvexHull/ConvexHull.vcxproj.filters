@@ -30,6 +30,9 @@
     <ClCompile Include="util.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="quick_sort.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="convex.h">
