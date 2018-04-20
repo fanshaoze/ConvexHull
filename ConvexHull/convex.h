@@ -23,7 +23,7 @@ int sort_angle(node nodes[], int start);
 node* graham_scan(node *nodes);
 void quicksort_place(node * nodes, int begin, int end);
 void quicksort_angle(node * nodes, int begin, int end);
-void swap(node *a, node *b);
 
+void swap(node *a, node *b);
 void printresult(node *nodes, int *mark);
 int generatenodes(node *nodes);

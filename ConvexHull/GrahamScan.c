@@ -105,18 +105,7 @@ node* graham_scan(node *nodes) {
 	return stack;
 }
 
-void swap(node *a, node *b)
-{
-	int temp;
-	temp = a->x;
-	a->x = b->x;
-	b->x = temp;
 
-	temp = a->y;
-	a->y = b->y;
-	b->y = temp;
-	return;
-}
 
 void quicksort_place(node * nodes, int begin, int end)
 {

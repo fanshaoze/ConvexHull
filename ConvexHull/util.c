@@ -31,3 +31,16 @@ void printresult(node *nodes, int *mark) {
 	}
 	return;
 }
+
+void swap(node *a, node *b)
+{
+	int temp;
+	temp = a->x;
+	a->x = b->x;
+	b->x = temp;
+
+	temp = a->y;
+	a->y = b->y;
+	b->y = temp;
+	return;
+}
