@@ -5,9 +5,7 @@
 #include <time.h>
 #include <math.h>
 #include<string.h>
-int cross(node p0, node p1, node p2) {
-	return (p1.x - p0.x)*(p2.y - p0.y) - (p2.x - p0.x)*(p1.y - p0.y);
-}
+
 
 double dis(node a, node b) {
 	return sqrt(1.0*(a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));

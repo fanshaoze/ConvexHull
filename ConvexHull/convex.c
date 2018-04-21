@@ -29,13 +29,14 @@ int main() {
 		//nodes[3].x = 4;
 		//nodes[3].y = 4;
 		//enumeration(nodes);
+
 		printf("graham_scan--------------------------------------\n");
 		graham_scan(nodes);
+		divide_conquer(nodes, 0, length - 1);
 		printf("what");
 		free(nodes);
 		return 0;
 	}
-	
 	return 0;
 
 }

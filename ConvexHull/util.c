@@ -44,3 +44,7 @@ void swap(node *a, node *b)
 	b->y = temp;
 	return;
 }
+
+int cross(node p0, node p1, node p2) {
+	return (p1.x - p0.x)*(p2.y - p0.y) - (p2.x - p0.x)*(p1.y - p0.y);
+}
