@@ -25,13 +25,15 @@ int partition(node *nodes, int left, int right)
 	swap(&nodes[left], &nodes[pos]);
 	return left;
 }
-int getMidIndex(node *nodes, int size)
+int getMidIndex(node *nodes, int begin,int end)
 {
+	int size = end - begin + 1;
+	printf("begin:%d,end:%d,size:%d\n", begin, end, size);
 	if (nodes == NULL || size <= 0)
 		return -1;
-	int left = 0;
-	int right = size - 1;
-	int midPos = right >> 1;
+	int left = begin;
+	int right = end;
+	int midPos = (right + left)/ 2;
 	int index = -1;
 	while (index != midPos) {
 		index = partition(nodes, left, right);
@@ -49,14 +51,27 @@ int getMidIndex(node *nodes, int size)
 }
 
 node* divide_conquer(node* nodes, int begin, int end) {
-	if ((end - begin + 1) <= 3) return nodes;
-	node* ans = calloc(end - begin + 1, sizeof(node));
-	memcpy(ans, nodes, (end - begin + 1) * sizeof(nodes));
-	int index = getMidIndex(ans, begin - end + 1);
-	node* ql = calloc(index, sizeof(node));
-	memcpy(ql, divide_conquer(ans, begin, index - 1), index);
-	node* qr = calloc(end - index, sizeof(node));
-	memcpy(qr, divide_conquer(ans, index, end - 1), index);
+	int divide_length = end - begin + 1;
+	if (divide_length <= 3) return nodes;
+	//node* ans = (node*)calloc(divide_length, sizeof(node));
+	//memcpy(ans, nodes, divide_length * sizeof(node));
+	int *mark = (int*)calloc((divide_length), sizeof(int));
+	printf("nodes begin %d,end %d \n",begin,end);
+	divide_printresult(nodes, mark,begin,end);
+
+	int index = getMidIndex(nodes, begin,end);
+
+	printf("index %d \n", index);
+	divide_printresult(nodes, mark, begin, end);
+	int ql_length = index - begin;
+	int qr_length = end - index + 1;
+
+	node* ql = (node*)calloc(ql_length, sizeof(node));
+	printf("qllen:%d,qrlen:%d\n", ql_length, qr_length);
+	memcpy(ql, divide_conquer(nodes, begin, index - 1), ql_length * sizeof(node));
+	node* qr = (node*)calloc(qr_length, sizeof(node));
+	memcpy(qr, divide_conquer(nodes, index, end), qr_length*sizeof(node));
+
 	node central;
 	central.x = 0;
 	central.y = 0;
@@ -64,21 +79,27 @@ node* divide_conquer(node* nodes, int begin, int end) {
 		central.x += ql[i].x;
 		central.y += qr[i].y;
 	}
-	central.x = central.x / index;
-	central.y = central.y / index;
-	int min_y = ql[0].y;
+	central.x = central.x / (double)ql_length;
+	central.y = central.y / (double)ql_length;
+	if (ql_length < 2) {
+		central.x += 1;
+		central.y += 1;
+		//Í¶»úÈ¡ÇÉ
+	}
+	printf("central x:%lf y:%lf ", central.x, central.y);
+	double min_y = ql[0].y;
 	int min_y_index = 0;
-	for (int i = 1; i < index; i++) {
+	for (int i = 1; i < ql_length; i++) {
 		if (ql[i].y < min_y) {
 			min_y = ql[i].y;
 			min_y_index = i;
 		}
 	}
-	node * gra_ans = calloc(end - begin + 1, sizeof(node));
-	memcpy(gra_ans, ql, index);
-	memcpy(gra_ans, qr, end - begin + 1 - index);
+	node * gra_ans = (node*)calloc(divide_length, sizeof(node));
+	memcpy(gra_ans, ql, ql_length* sizeof(node));
+	memcpy(gra_ans, qr, qr_length * sizeof(node));
 	divide_quicksort(central, gra_ans, begin, end, min_y_index);
-	divide_graham_scan(gra_ans, end - begin + 1);
+	divide_graham_scan(gra_ans, divide_length);
 	return gra_ans;
 
 }
@@ -149,10 +170,11 @@ void divide_quicksort(node central, node * nodes, int begin, int end, int min_y_
 
 double get_angle(node central, node a, node b) {
 	double angle = 0;
-	double v0_x = (double)(a.x - central.x);
-	double v0_y = (double)(a.y - central.y);
-	double v1_x = (double)(b.x - central.x);
-	double v1_y = (double)(b.y - central.y);
+	double v0_x = a.x - central.x;
+	double v0_y = a.y - central.y;
+
+	double v1_x = b.x - central.x;
+	double v1_y = b.y - central.y;
 	double cos = (v0_x*v1_x + v0_y*v1_y) / (sqrt(v0_x*v0_x + v0_y*v0_y)*sqrt(v1_x*v1_x + v1_y*v1_y));
 	angle = acos(cos);
 	return angle;

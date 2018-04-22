@@ -8,8 +8,8 @@
 
 
 int main() {
-	length = 50000;
-	range = 10;
+	length =10;
+	range = 10.0;
 	times = 1;
 	for (int i = 0; i < times; i++) {
 		node* nodes = (node*)calloc(length, sizeof(node));
@@ -28,7 +28,7 @@ int main() {
 		//nodes[2].y = 3;
 		//nodes[3].x = 4;
 		//nodes[3].y = 4;
-		//enumeration(nodes);
+		enumeration(nodes);
 
 		printf("graham_scan--------------------------------------\n");
 		graham_scan(nodes);

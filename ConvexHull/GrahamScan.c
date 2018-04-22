@@ -12,7 +12,7 @@ double dis(node a, node b) {
 }
 
 int cmp2(node nodes[], node p1, node p2) {
-	int c1 = cross(nodes[0], p1, p2);  //tp,p1),c2=cross(p[0],tp,p2);  
+	double c1 = cross(nodes[0], p1, p2);  //tp,p1),c2=cross(p[0],tp,p2);  
 	if (c1 == 0) {
 		return dis(p1, nodes[0])<dis(p2, nodes[0]);
 	}
@@ -20,7 +20,7 @@ int cmp2(node nodes[], node p1, node p2) {
 }
 
 int cmp3(node nodes[], node p1, node p2,int equal) {
-	int c1 = cross(nodes[0], p1, p2);  //tp,p1),c2=cross(p[0],tp,p2);  
+	double c1 = cross(nodes[0], p1, p2);  //tp,p1),c2=cross(p[0],tp,p2);  
 	if (c1 == 0) {
 		if (equal == 0)
 			return dis(p1, nodes[0])<dis(p2, nodes[0]);

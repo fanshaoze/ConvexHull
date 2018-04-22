@@ -34,16 +34,16 @@ void enumeration(node *nodes) {
 	}
 	printresult(nodes, mark);
 }
-int side(node x, node y, node z)
+double side(node x, node y, node z)
 {
-	int a, b, c;
+	double a, b, c;
 	a = y.y - x.y;
 	b = x.x - y.x;
 	c = x.x * y.y - x.y * y.x;
 	return a * z.x + b * z.y - c;
 }
 int judgein(node a, node b, node c, node d) {
-	int sameside0, sameside1, sameside2;
+	double sameside0, sameside1, sameside2;
 	sameside0 = side(a, b, d)*side(a, b, c);
 	sameside1 = side(a, c, d)*side(a, c, b);
 	sameside2 = side(b, c, d)*side(b, c, a);
