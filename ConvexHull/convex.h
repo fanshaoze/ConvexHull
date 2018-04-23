@@ -43,3 +43,4 @@ void printresult(node *nodes, int *mark);
 int generatenodes(node *nodes);
 double cross(node p0, node p1, node p2);
 void divide_printresult(nodearray pnode);
+void init(nodearray pnode, int len);

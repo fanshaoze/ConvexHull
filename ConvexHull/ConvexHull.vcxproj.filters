@@ -33,9 +33,6 @@
     <ClCompile Include="quick_sort.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DivideConquer.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="divide.c">
       <Filter>源文件</Filter>
     </ClCompile>
