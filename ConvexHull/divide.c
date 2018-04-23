@@ -50,9 +50,9 @@ int getMidIndex(node *nodes, int begin,int end)
 	return index;
 }
 
-node* divide_conquer(node* nodes, int begin, int end) {
-	int divide_length = end - begin + 1;
-	if (divide_length <= 3) return nodes;
+nodearray divide_conquer(nodearray pnode) {
+	int divide_length = pnode.length;
+	if (divide_length <= 3) return pnode;
 	int t = 0;
 	for (int i = 0; i < divide_length; i++) {
 		if (mark[i] != 1) t++;
@@ -61,14 +61,14 @@ node* divide_conquer(node* nodes, int begin, int end) {
 	t = 0;
 	for (int i = 0; i < divide_length; i++) {
 		if (mark[i] != 1) {
-			ans[t].x = nodes[i].x;
-			ans[t].y = nodes[i].y;
+			ans[t].x = pnode.nodes[i].x;
+			ans[t].y = pnode.nodes[i].y;
 			t++;
 	}
 
 	//memcpy(ans, nodes, divide_length * sizeof(node));
-	printf("nodes begin %d,end %d \n",begin,end);
-	divide_printresult(nodes, mark,begin,end);
+	//printf("nodes begin %d,end %d \n",begin,end);
+	divide_printresult(pnode);
 
 	int index = getMidIndex(nodes, begin,end);
 

@@ -40,11 +40,10 @@ void printresult(node *nodes, int *mark) {
 	return;
 }
 
-void divide_printresult(node *nodes, int *mark,int begin,int end) {
-	int i = begin;
-	for (i = begin; i <= end; i++) {
+void divide_printresult(nodearray pnode) {
+	for (int i = 0; i <= pnode.length; i++) {
 		if (!mark[i]) {
-			printf("node (%lf %lf)\n", nodes[i].x, nodes[i].y);
+			printf("node (%lf %lf)\n", pnode.nodes[i].x, pnode.nodes[i].y);
 		}
 	}
 	return;

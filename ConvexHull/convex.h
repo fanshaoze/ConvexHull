@@ -7,9 +7,16 @@ typedef struct
 	double y;
 }node;
 
+typedef struct
+{
+	node* nodes;
+	int length;
+}nodearray;
+
 int length;
 double range;
 int times;
+int *mark;
 
 void enumeration(node *nodes);
 int judgein(node a, node b, node c, node d);
@@ -27,7 +34,7 @@ void quicksort_angle(node * nodes, int begin, int end);
 int partition(node *nodes, int left, int right);
 int getMidIndex(node *nodes,int begin,int end);
 node* divide_conquer(node* nodes, int begin, int end);
-node* divide_graham_scan(node *nodes, int len);
+node* divide_graham_scan(node *nodes, int len, int begin, int end);
 void divide_quicksort(node central, node * nodes, int begin, int end, int min_y_index);
 double get_angle(node central, node a, node b);
 
@@ -35,4 +42,4 @@ void swap(node *a, node *b);
 void printresult(node *nodes, int *mark);
 int generatenodes(node *nodes);
 double cross(node p0, node p1, node p2);
-void divide_printresult(node *nodes, int *mark, int begin, int end);
+void divide_printresult(nodearray pnode);

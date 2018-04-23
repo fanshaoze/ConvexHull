@@ -11,6 +11,7 @@ int main() {
 	length =10;
 	range = 10.0;
 	times = 1;
+	mark = (int*)calloc((length), sizeof(int));
 	for (int i = 0; i < times; i++) {
 		node* nodes = (node*)calloc(length, sizeof(node));
 		if (nodes == NULL) {
@@ -29,9 +30,10 @@ int main() {
 		//nodes[3].x = 4;
 		//nodes[3].y = 4;
 		enumeration(nodes);
-
+		mark = (int*)calloc((length), sizeof(int));
 		printf("graham_scan--------------------------------------\n");
 		graham_scan(nodes);
+		mark = (int*)calloc((length), sizeof(int));
 		divide_conquer(nodes, 0, length - 1);
 		printf("what");
 		free(nodes);

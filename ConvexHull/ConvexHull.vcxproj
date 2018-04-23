@@ -112,6 +112,7 @@
   <ItemGroup>
     <ClCompile Include="Brute.c" />
     <ClCompile Include="convex.c" />
+    <ClCompile Include="divide.c" />
     <ClCompile Include="DivideConquer.c" />
     <ClCompile Include="GrahamScan.c" />
     <ClCompile Include="quick_sort.c" />
