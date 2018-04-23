@@ -5,6 +5,7 @@
 //#include "GrahamScan.c"
 #include "malloc.h"
 #include <time.h>
+#include <string.h>
 
 
 int main() {
@@ -34,7 +35,12 @@ int main() {
 		printf("graham_scan--------------------------------------\n");
 		graham_scan(nodes);
 		mark = (int*)calloc((length), sizeof(int));
-		divide_conquer(nodes, 0, length - 1);
+		nodearray pnode;
+		pnode.nodes = NULL;
+		pnode.length = 0;
+		init(pnode, length);
+		memcpy(pnode.nodes,nodes,length*sizeof(node));
+		divide_conquer(pnode);
 		printf("what");
 		free(nodes);
 		return 0;

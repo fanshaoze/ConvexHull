@@ -32,9 +32,9 @@ void quicksort_place(node * nodes, int begin, int end);
 void quicksort_angle(node * nodes, int begin, int end);
 
 int partition(node *nodes, int left, int right);
-int getMidIndex(node *nodes,int begin,int end);
-node* divide_conquer(node* nodes, int begin, int end);
-node* divide_graham_scan(node *nodes, int len, int begin, int end);
+int getMidIndex(nodearray pnode);
+nodearray divide_conquer(nodearray pnode);
+nodearray divide_graham_scan(nodearray pnode);
 void divide_quicksort(node central, node * nodes, int begin, int end, int min_y_index);
 double get_angle(node central, node a, node b);
 

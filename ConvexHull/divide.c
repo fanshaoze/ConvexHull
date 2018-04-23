@@ -72,6 +72,8 @@ nodearray divide_conquer(nodearray pnode) {
 
 	int index = getMidIndex(pnode);
 	nodearray pl,pr;
+	pl.nodes = NULL;
+	pr.nodes = NULL;
 	init(pl, index);
 	init(pr, divide_length-index);
 	printf("index %d \n", index);
@@ -82,12 +84,19 @@ nodearray divide_conquer(nodearray pnode) {
 	printf("pr \n");
 	divide_printresult(pr);
 	nodearray ql, qr;
+	ql.nodes = NULL;
+	qr.nodes = NULL;
+	ql.length = 0;
+	qr.length = 0;
 	//int ql_length = index;
 	//int qr_length = divide_length - index;
 	
 
 	nodearray temp;
+	temp.nodes = NULL;
+	temp.length = 0;
 	temp = divide_conquer(pl);
+
 	init(ql, temp.length);
 	memcpy(ql.nodes, temp.nodes, ql.length * sizeof(node));
 	temp = divide_conquer(pr);
@@ -121,12 +130,14 @@ nodearray divide_conquer(nodearray pnode) {
 	//min_y_index = begin + min_y_index;
 	//node * gra_ans = (node*)calloc(divide_length, sizeof(node));
 	nodearray result;
+	result.nodes = NULL;
+	result.length = ql.length + qr.length;
 	init(result, ql.length+qr.length);
 	memcpy(result.nodes, ql.nodes, ql.length* sizeof(node));
 	memcpy(&result.nodes[ql.length], qr.nodes, qr.length * sizeof(node));
 	divide_quicksort(central, result.nodes, 0,result.length-1,min_y_index);
 	return divide_graham_scan(pnode);
-	return pnode;
+	//return pnode;
 
 }
 
@@ -152,6 +163,7 @@ nodearray divide_graham_scan(nodearray pnode) {
 	}
 	int * mark2 = (int*)calloc(top, sizeof(int));
 	nodearray result;
+	result.nodes = NULL;
 	init(result, top);
 	memcpy(result.nodes, stack, top*sizeof(node));
 	printresult(stack, mark2);
