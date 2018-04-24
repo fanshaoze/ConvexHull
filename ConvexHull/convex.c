@@ -9,7 +9,7 @@
 
 
 int main() {
-	length =10;
+	length =4;
 	range = 10.0;
 	times = 1;
 	mark = (int*)calloc((length), sizeof(int));
@@ -30,15 +30,18 @@ int main() {
 		//nodes[2].y = 3;
 		//nodes[3].x = 4;
 		//nodes[3].y = 4;
-		enumeration(nodes);
+		//enumeration(nodes);
+		int t = 0;
 		mark = (int*)calloc((length), sizeof(int));
 		printf("graham_scan--------------------------------------\n");
 		graham_scan(nodes);
 		mark = (int*)calloc((length), sizeof(int));
 		nodearray pnode;
-		pnode.nodes = NULL;
-		pnode.length = 0;
-		init(pnode, length);
+		pnode.nodes = &t;
+		pnode.length = length;
+		//pnode.length = len;
+		pnode.nodes = (node*)calloc(pnode.length, sizeof(node));
+		//init(pnode, length);
 		memcpy(pnode.nodes,nodes,length*sizeof(node));
 		divide_conquer(pnode);
 		printf("what");

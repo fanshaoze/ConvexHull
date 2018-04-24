@@ -35,12 +35,14 @@ int partition(node *nodes, int left, int right);
 int getMidIndex(nodearray pnode);
 nodearray divide_conquer(nodearray pnode);
 nodearray divide_graham_scan(nodearray pnode);
-void divide_quicksort(node central, node * nodes, int begin, int end, int min_y_index);
+void divide_quicksort(node central, node * nodes, int begin, int end, node min_y);
 double get_angle(node central, node a, node b);
+nodearray upordown(node central, nodearray result, int min_y_index);
 
 void swap(node *a, node *b);
 void printresult(node *nodes, int *mark);
 int generatenodes(node *nodes);
 double cross(node p0, node p1, node p2);
+double cross2(node p0, node p1, node p2);
 void divide_printresult(nodearray pnode);
-void init(nodearray pnode, int len);
+void init(nodearray* pnode, int len);

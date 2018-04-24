@@ -41,10 +41,8 @@ void printresult(node *nodes, int *mark) {
 }
 
 void divide_printresult(nodearray pnode) {
-	for (int i = 0; i <= pnode.length; i++) {
-		if (!mark[i]) {
-			printf("node (%lf %lf)\n", pnode.nodes[i].x, pnode.nodes[i].y);
-		}
+	for (int i = 0; i < pnode.length; i++) {
+		printf("node (%lf %lf)\n", pnode.nodes[i].x, pnode.nodes[i].y);
 	}
 	return;
 }
@@ -62,11 +60,15 @@ void swap(node *a, node *b)
 	return;
 }
 
-double cross(node p0, node p1, node p2) {
+double cross(node p0, node p1, node p2) {// cross>0:p2 up to the line of p1 and p0
 	return (p1.x - p0.x)*(p2.y - p0.y) - (p2.x - p0.x)*(p1.y - p0.y);
 }
 
-void init(nodearray pnode,int len) {
-	pnode.length = len;
-	pnode.nodes = calloc(len, sizeof(node));
+double cross2(node p0, node p1, node p2) {// cross>0:p2 up to the line of p1 and p0
+	return ((p1.x - p0.x)*(p2.y - p0.y) - (p2.x - p0.x)*(p1.y - p0.y)) >= 0;
+}
+
+void init(nodearray *pnode,int len) {
+	pnode->length = len;
+	pnode->nodes = (node*)calloc(len, sizeof(node));
 }
