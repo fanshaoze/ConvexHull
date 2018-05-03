@@ -10,6 +10,7 @@ void enumeration(node *nodes) {
 	int *mark = (int*)calloc(length, sizeof(int));
 	int i, j, k, g;
 	int isin;
+	int m = 0;
 	for (i = 0; i < length; i++) {
 		for (j = 0; j < length; j++) {
 			for (k = 0; k < length; k++) {
@@ -27,12 +28,15 @@ void enumeration(node *nodes) {
 					}
 					else {
 						continue;
+						
 					}
 				}
 			}
 		}
 	}
+
 	printresult(nodes, mark);
+	printf("length :%d\n", m);
 }
 double side(node x, node y, node z)
 {

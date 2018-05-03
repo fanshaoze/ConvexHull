@@ -100,6 +100,7 @@ node* graham_scan(node *nodes) {
 		mark[i] = 1;
 	}
 	printresult(stack,mark);
+	printf("length:%d\n", top);
 	return stack;
 }
 
